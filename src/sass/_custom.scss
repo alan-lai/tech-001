@@ -1,0 +1,89 @@
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('../webfonts/PlayfairDisplay-Regular.eot');
+  src: url('../webfonts/PlayfairDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/PlayfairDisplay-Regular.woff2') format('woff2'),
+       url('../webfonts/PlayfairDisplay-Regular.woff') format('woff'),
+       url('../webfonts/PlayfairDisplay-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../webfonts/lato-black.eot');
+  src: local('Lato Black'),
+       local('Lato-Black'),
+       url('../webfonts/lato-black.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/lato-black.woff2') format('woff2'),
+       url('../webfonts/lato-black.woff') format('woff'),
+       url('../webfonts/lato-black.ttf') format('truetype'),
+       url('../webfonts/lato-black.svg#lato') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../webfonts/lato-bold.eot');
+  src: local('Lato Bold'),
+       local('Lato-Bold'),
+       url('../webfonts/lato-bold.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/lato-bold.woff2') format('woff2'),
+       url('../webfonts/lato-bold.woff') format('woff'),
+       url('../webfonts/lato-bold.ttf') format('truetype'),
+       url('../webfonts/lato-bold.svg#lato') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../webfonts/lato-regular.eot');
+  src: local('Lato Regular'),
+       local('Lato-Regular'),
+       url('../webfonts/lato-regular.eot?#iefix') format('embedded-opentype'),
+       url('../webfonts/lato-regular.woff2') format('woff2'),
+       url('../webfonts/lato-regular.woff') format('woff'),
+       url('../webfonts/lato-regular.ttf') format('truetype'),
+       url('../webfonts/lato-regular.svg#lato') format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../webfonts/MaterialIcons-Regular.eot'); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('../webfonts/MaterialIcons-Regular.woff2') format('woff2'),
+    url('../webfonts/MaterialIcons-Regular.woff') format('woff'),
+    url('../webfonts/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

@@ -1,0 +1,26 @@
+{
+  "name": "tech-001",
+  "authors": [
+    "Alan Lai <alan.fl.lai@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "vue": "^2.5.16",
+    "font-awesome": "^5.0.10",
+    "lato": "^0.3.0",
+    "playfair-webfont": "^1.0.3",
+    "material-icons": "^0.2.2"
+  }
+}

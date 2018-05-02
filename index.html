@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise 001</title>
+    <link rel="stylesheet" href="/dist/css/styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="desktop-wrapper">
+            <div id="desktop-logo">
+                <a href="#">
+                    <img src="images/logo.png" alt="Logo" />
+                </a>
+                <div id="mobile-menu">
+                    <ul>
+                        <li><button type="button" id="mobile-search-toggle"><i class="fas fa-search"></i></button></li>
+                        <li><button type="button" id="mobile-menu-toggle" @click="toggleMobileMenu"><span></span><span></span><span></span></button></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="desktop-core">
+                <header id="page-header" :data-show-menu="showMenu">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <nav id="primary-nav">
+                                    <ul>
+                                        <li v-for="menuItem in menuItems" :class="{active: menuItem.active}">
+                                            <a v-on:click="toggleItem(menuItem, $event)" :href="menuItem.href">{{ menuItem.name }} <i v-if="menuItem.children && menuItem.children.length" :class="menuItem.active ? 'fas fa-angle-up' : 'fas fa-angle-down'"></i></a>
+                                            <div class="mega-menu" v-if="menuItem.children && menuItem.children.length" :data-show-children="menuItem.active">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-12 menu-heading">
+                                                            <p class="h1">{{ menuItem.name }}
+                                                                <i class="fas fa-long-arrow-alt-right"></i>
+                                                            </p>
+                                                            <span class="material-icons btn-close" v-on:click="toggleItem(menuItem, $event)">clear</span>
+                                                        </div>
+                                                        <div class="col-12 col-md-6" v-for="lvl2 in menuItem.children">
+                                                            <p v-if="lvl2.name" class="h2">{{ lvl2.name }}</p>
+                                                            <p v-if="lvl2.description">{{ lvl2.description }}</p>
+                                                            <p v-if="lvl2.href">
+                                                                <a class="find-out-more" :href="lvl2.href">More
+                                                                    <i class="fas fa-long-arrow-alt-right"></i>
+                                                                </a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- <li class="active">
+                                            <a href="#">Menu 1 <i class="fas fa-angle-down"></i></a>
+                                            <div class="mega-menu">
+                                                <div class="container-fluid">
+                                                    <div class="row">
+                                                        <div class="col-12 menu-heading">
+                                                            <p class="h1">Menu 1
+                                                                <i class="fas fa-long-arrow-alt-right"></i>
+                                                            </p>
+                                                            <span class="material-icons btn-close">clear</span>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <p class="h2">Submenu</p>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                            <p>
+                                                                <a class="find-out-more" href="#">More <i class="fas fa-long-arrow-alt-right"></i></a>
+                                                            </p>
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <p class="h2">Submenu</p>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                            <p>
+                                                                <a class="find-out-more" href="#">More <i class="fas fa-long-arrow-alt-right"></i></a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><a href="#">Menu 2</a></li>
+                                        <li><a href="#">Menu 3</a></li>
+                                        <li><a href="#">Menu 4</a></li> -->
+                                    </ul>
+                                </nav>
+                                <div class="utilities">
+                                    <ul>
+                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="#"><i class="fas fa-search"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <main id="page-content">
+                    <section class="hero-block">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col content-area">
+                                    <div class="blue-deco"></div>
+                                    <div class="row">
+                                        <div class="col-12 col-xl-4 col-lg-5">
+                                            <h1>Donec in euismod tortor dolorjusto justo</h1>
+                                        </div>
+                                        <div class="col-12 col-xl-7 col-lg-6">
+                                            <div class="content">
+                                                <p>Quisque egestas vel tortor ac maximus. Maecenas vel felis ut ex finibus ultricies tincidunt ac enim. Suspendisse malesuada, sapien et posuere pulvinar, mauris ante laoreet nisl, vel venenatis dolor risus sed ligula.</p>
+                                                <p><a href="#" class="find-out-more">Find out more <i class="fas  fa-long-arrow-alt-right"></i></a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="articles" v-if="articles.length">
+                        <div class="black-bg"></div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md-4" v-for="article in articles">
+                                    <article class="article">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img :src="article.image" :alt="article.title">
+                                            </a>
+                                        </div>
+                                        <div class="text">
+                                            <h2 v-if="article.title">{{ article.title }}</h2>
+                                            <p v-if="article.blurb">{{ article.blurb }}</p>
+                                            <p v-if="article.link && article.link.href && article.link.text">
+                                                <a :href="article.link.href" class="find-out-more">{{ article.link.text }}
+                                                    <i class="fas fa-long-arrow-alt-right"></i>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </article>
+                                </div>
+                                <!-- <div class="col-12 col-md-4">
+                                    <article class="article">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="images/placeholder-01.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="text">
+                                            <h2>Cras egestas turpis vel erat ullamcorper efficitur &hellip;</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cur igitur easdem res, inquam, Peripateticis dicentibus ur igitur easdem &hellip;</p>
+                                            <p><a href="#" class="find-out-more">Read more <i class="fas  fa-long-arrow-alt-right"></i></a></p>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <article class="article">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="images/placeholder-02.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="text">
+                                            <h2>Cras egestas turpis</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cur igitur easdem res, inquam, Peripateticis dicentibus igitur easdem res &hellip;</p>
+                                            <p><a href="#" class="find-out-more">Join Us <i class="fas  fa-long-arrow-alt-right"></i></a></p>   
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <article class="article">
+                                        <div class="image">
+                                            <a href="#">
+                                                <img src="images/placeholder-03.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="text">
+                                            <h2><a href="#">Cras egestas turpis</a></h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cur igitur easdem res, inquam, Peripateticis dicentibus igitur easdem res &hellip;</p>
+                                            <p><a href="#" class="find-out-more">Read more <i class="fas  fa-long-arrow-alt-right"></i></a></p>
+                                        </div>
+                                    </article>
+                                </div> -->
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <div id="desktop-balance"></div>
+        </div>
+        <footer id="page-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="d-none d-xl-flex col-xl-3">
+                        <p class="logo"><img src="images/logo.png" alt="Logo"></p>
+                    </div>
+                    <div class="col-12 col-xl-9 contacts">
+                        <div class="social-media">
+                            <ul>
+                                <li><a href="#" title="Find us on LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="mobile-left-block">
+                            <nav class="quick-links">
+                                <ul>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Sitemap</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Copyright &amp; disclaimer</a></li>
+                                    <li><a href="#">Webdesign &amp; development</a></li>
+                                </ul>
+                            </nav>
+                            <p class="copyright">&copy; 2018 Createstudios all rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="/dist/js/vue.min.js"></script>
+    <script src="/dist/js/global.js"></script>
+</body>
+</html>
